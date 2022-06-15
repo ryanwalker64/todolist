@@ -6,6 +6,7 @@ export default class createTask {
         // this.priority = priority;
         this.id = Date.now().toString();
         this.complete = false;
+        // run this when new task object is created
     }
 
     setTitle(title) {
@@ -22,6 +23,15 @@ export default class createTask {
 
     getDueDate() {
         return this.dueDate;
+    }
+
+    addTaskToActiveProject() {
+        // find active project
+        const activeProject = document.getElementById('activeProject');
+        const activeProjectID = activeProject.dataset.activeproject;
+       
+        // push on the end of the project
+        // console.log(activeProject)
     }
 
     

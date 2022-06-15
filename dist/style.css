@@ -1,0 +1,50 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+main {
+    max-width: 960px;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+#new-task {
+    width: 100%;
+}
+
+.task-title-input {
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 1.1em;
+}
+
+.task-title-input:focus {
+    outline: none;
+}
+
+.taskItem {
+    list-style: none;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.taskItem>.checkbox-custom {
+    width: 1em;
+    height: 1em;
+    outline: 2px solid black;
+    margin-right: 10px;
+}
+
+.taskItem>p {
+    margin: 0;
+}
+
+.checkbox-custom[data-checked="true"] {
+    background-color: black;
+}

@@ -1,7 +1,11 @@
 # Tasklist App
 
 - [x] setup webpack
-- [] create basic html structure
-- [] create a class for new tasks
-- [] create a class for new projects
+- [x] create basic html structure
+- [x] create a class for new tasks
+    - [] add to selected project
+    - [] create DOM nodes of task w/ event listeners
+    - [] display tasks in DOM
+- [x] create a class for new projects
+    - [] set default project on launch
 - [] localstorage
