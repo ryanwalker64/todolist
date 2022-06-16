@@ -3,11 +3,54 @@ body {
     color: #333;
 }
 
+h1,
+h2,
+h3,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.projectsList>ul {
+    list-style: none;
+    padding-top: 5px;
+}
+
+
+
+.projectTitle {
+    opacity: 0.5;
+    /* font-size: 0.8em; */
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.projectTitle:hover {
+    opacity: 1;
+}
+
+.projectTitle:hover::before {
+    content: '→';
+    margin-right: 5px;
+}
+
+
+.projectTitle[data-activeproject="true"] {
+    display: none;
+}
+
 main {
     max-width: 960px;
     width: 50%;
     margin: 0 auto;
     padding-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#container {
+    margin-top: 20px;
 }
 
 #new-task {
@@ -39,6 +82,7 @@ main {
     height: 1em;
     outline: 2px solid black;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .taskItem>p {
@@ -47,4 +91,10 @@ main {
 
 .checkbox-custom[data-checked="true"] {
     background-color: black;
+}
+
+.checkbox-custom[data-checked="true"],
+.checkbox-custom[data-checked="true"]+p {
+    opacity: 0.3;
+    text-decoration: line-through;
 }

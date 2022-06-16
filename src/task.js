@@ -6,7 +6,7 @@ export default class createTask {
         // this.priority = priority;
         this.id = Date.now().toString();
         this.complete = false;
-        // run this when new task object is created
+        
     }
 
     setTitle(title) {
@@ -17,6 +17,10 @@ export default class createTask {
         return this.title;
     }
 
+    getId() {
+        return this.id;
+    }
+
     setDueDate(dueDate) {
         this.dueDate = dueDate;
     }
@@ -25,14 +29,14 @@ export default class createTask {
         return this.dueDate;
     }
 
-    addTaskToActiveProject() {
-        // find active project
-        const activeProject = document.getElementById('activeProject');
-        const activeProjectID = activeProject.dataset.activeproject;
-       
-        // push on the end of the project
-        // console.log(activeProject)
+    getDOMElement() {
+        return `<li class='taskItem'>
+                    <div class="checkbox-custom" data-checked="${this.complete}" data-taskid="${this.id}"></div>
+                    <p>${this.title}</p>
+                </li>`;
     }
+
+
 
     
 

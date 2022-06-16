@@ -16,15 +16,23 @@
 
 <body>
     <main>
-        <h1 id="activeProject" data-activeproject=""></h1>
-        <div id="container"></div>
-        <form id="new-task">
-            <input type="text" placeholder="Add a task or type / for shortcuts " name='Title' class="task-title-input"
-                autofocus />
+        <div class="projectsList">
+            <ul class="sideBarProjectsList">
+            </ul>
+        </div>
+
+        <div class="activeProjectContainer">
+            <h1 id="activeProject" data-activeproject=""></h1>
+            <ul id="container"></ul>
+            <form id="new-task">
+                <input type="text" placeholder="Add a task or type / for shortcuts " name='Title'
+                    class="task-title-input" autofocus />
 
 
-            <!-- <button type="submit" onclick="">+</button> -->
-        </form>
+                <!-- <button type="submit" onclick="">+</button> -->
+            </form>
+        </div>
+
     </main>
     <script src="./main.js"></script>
 </body>
