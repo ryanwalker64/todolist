@@ -20,33 +20,38 @@ export default class createProject {
 
     addTaskToProject(task){
         this.tasks.push(task);
+        // console.log( this.tasks)
         this.addTasksToDOM()
     }
 
     addTasksToDOM() {
         const taskContainer = document.getElementById('container');
-
+        
         const tasksHTML = this.tasks.map(task => {
-            return `<li class='taskItem'>
-            <div class="checkbox-custom" data-checked="${task.complete}" data-taskid="${task.id}"></div>
-            <p>${task.title}</p>
-        </li>`
-        }).join('') // MOVE TO SEPERATE MODULE
-
+            return task.getDOMElement()
+        }).join('')        
 
         taskContainer.innerHTML = tasksHTML;
-        this.addEventListenersToCheckboxes();
+        // this.addEventListenersToCheckboxes();
     }
 
-    addEventListenersToCheckboxes() {
-        const checkboxes = document.querySelectorAll('.checkbox-custom');
+    // addEventListenersToCheckboxes() {
+    //     const checkboxes = document.querySelectorAll('.checkbox-custom');
     
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener('click', (e) => {
-            e.target.dataset.checked === 'false' ? e.target.dataset.checked = 'true' :  e.target.dataset.checked = 'false' ;
-            })
-        }
-    }
+    //     for (let i = 0; i < checkboxes.length; i++) {
+    //         checkboxes[i].addEventListener('click', (e) => {
+
+    //             if (e.target.dataset.checked === 'false'){
+    //                 e.target.dataset.checked = 'true'
+    //                 this.tasks[i].complete = true;
+    //             } { 
+    //                 e.target.dataset.checked = 'false';
+    //                 this.tasks[i].complete = false;
+    //             }
+           
+    //         })
+    //     }
+    // }
 
     setAsActiveProject() {
         this.activeProject = true;
@@ -54,7 +59,15 @@ export default class createProject {
         activeProjectTitle.setAttribute('data-activeProject', this.id);
         activeProjectTitle.textContent = this.title;
         this.addTasksToDOM();
-        
     }
+
+    getTaskInProject(id) {
+        const taskIndex = this.tasks.findIndex(task => {
+            return task.id === id;
+         })
+         return this.tasks[taskIndex];
+    }
+
+    
 
 }

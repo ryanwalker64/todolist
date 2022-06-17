@@ -51,6 +51,7 @@ main {
 
 #container {
     margin-top: 20px;
+    width: 100%;
 }
 
 #new-task {
@@ -74,7 +75,13 @@ main {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    padding: 0;
+    width: 100%;
+    padding: 5px;
+    transition-duration: 200ms;
+}
+
+.taskItem:focus {
+    background-color: rgb(216, 235, 248);
 }
 
 .taskItem>.checkbox-custom {
@@ -87,6 +94,10 @@ main {
 
 .taskItem>p {
     margin: 0;
+}
+
+.taskItem>p[contenteditable] {
+    outline: none;
 }
 
 .checkbox-custom[data-checked="true"] {

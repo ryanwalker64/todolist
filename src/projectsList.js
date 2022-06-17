@@ -1,4 +1,4 @@
-import createProject from "./project"; // I DON"T THINK I NEED THIS"
+// import createProject from "./project"; // I DON"T THINK I NEED THIS"
 
 export default class ProjectsList {
     constructor() {
@@ -24,7 +24,7 @@ export default class ProjectsList {
         this.projects.push(project);
         console.log(this.projects); // REMOVE
         this.updateProjectsSidebar();
-        project.activeProject = true; // THIS SHOULD BE A MODULE ON THE PROJECT CLASS
+        project.setAsActiveProject(); // THIS SHOULD BE A MODULE ON THE PROJECT CLASS
 
     }
 
@@ -51,7 +51,7 @@ export default class ProjectsList {
     
         for (let i = 0; i < projects.length; i++) {
             projects[i].addEventListener('click', (e) => {
-                e.target.dataset.activeproject = 'true'; // THIS SHOULD BE USED
+                e.target.dataset.activeproject = 'true'; // THIS SHOULDN'T BE USED
                 const selectedProject = this.findProject(e.target.dataset.projectid);
                 this.deactiveAllProjects()
 

@@ -30,11 +30,22 @@ export default class createTask {
     }
 
     getDOMElement() {
-        return `<li class='taskItem'>
+        return `<li class='taskItem' tabIndex="-1">
                     <div class="checkbox-custom" data-checked="${this.complete}" data-taskid="${this.id}"></div>
                     <p>${this.title}</p>
                 </li>`;
+
+                //contenteditable="true"
     }
+
+    addEventListener() {
+
+    }
+
+    toggleComplete() {
+        this.complete = !this.complete; 
+    }
+
 
 
 
