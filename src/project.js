@@ -1,8 +1,10 @@
+import createTask from "./task";
+
 export default class createProject {
-    constructor(title, task) {
+    constructor(title, tasks, id) {
         this.title = title;
-        this.tasks = [];
-        this.id = Date.now().toString();
+        this.tasks = tasks ? tasks : [];
+        this.id = id ? id : Date.now().toString();
         this.activeProject = true;
     }
 
@@ -18,6 +20,16 @@ export default class createProject {
         return this.tasks;
     }
 
+
+    deleteTask(taskId) {
+        const taskIndex = this.tasks.findIndex(task => {
+            return task.id === taskId;
+        });
+        // console.log(taskIndex)
+        this.tasks.splice([taskIndex], 1);
+    }
+
+
     addTaskToProject(task){
         this.tasks.push(task);
         // console.log( this.tasks)
@@ -26,7 +38,7 @@ export default class createProject {
 
     addTasksToDOM() {
         const taskContainer = document.getElementById('container');
-        
+        console.log(this.tasks)
         const tasksHTML = this.tasks.map(task => {
             return task.getDOMElement()
         }).join('')        
@@ -34,24 +46,6 @@ export default class createProject {
         taskContainer.innerHTML = tasksHTML;
         // this.addEventListenersToCheckboxes();
     }
-
-    // addEventListenersToCheckboxes() {
-    //     const checkboxes = document.querySelectorAll('.checkbox-custom');
-    
-    //     for (let i = 0; i < checkboxes.length; i++) {
-    //         checkboxes[i].addEventListener('click', (e) => {
-
-    //             if (e.target.dataset.checked === 'false'){
-    //                 e.target.dataset.checked = 'true'
-    //                 this.tasks[i].complete = true;
-    //             } { 
-    //                 e.target.dataset.checked = 'false';
-    //                 this.tasks[i].complete = false;
-    //             }
-           
-    //         })
-    //     }
-    // }
 
     setAsActiveProject() {
         this.activeProject = true;
@@ -67,6 +61,16 @@ export default class createProject {
          })
          return this.tasks[taskIndex];
     }
+
+    addPrototypesToTasks(){
+        const protoTasks = this.tasks.map(task => {
+            return new createTask(task.title, task.id, task.complete);
+        })
+
+        this.tasks = protoTasks;
+        
+    }
+
 
     
 

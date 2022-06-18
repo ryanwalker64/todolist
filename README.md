@@ -1,12 +1,10 @@
 # Tasklist App
 
 ## TASKS
-- [] New TASK created update JSON 
-- [] add DELETE button and functionality
-    - [] update JSON 
+- [x] New TASK created update JSON 
+- [x] add DELETE button and functionality
+    - [x] update JSON 
 - [] add DUE-DATE button and functionality
-    - [] update JSON 
-- [] add PRIORITY button and functionality
     - [] update JSON 
 - [] add RENAME functionality
     - [] update JSON 
@@ -20,9 +18,9 @@
         - [] update JSON 
 
 ## STORAGE
-- [] On pageload, check localstorage and pull projects
-    - [] Make sure all classes get their methods
-- [] if no items initNewProjectList 
+- [x] On pageload, check localstorage and pull projects
+    - [x] Make sure all classes get their methods
+- [x] if no items initNewProjectList 
 
 ## FINISHERS
 - [] refactor and delete old code

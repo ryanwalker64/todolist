@@ -1,5 +1,3 @@
-// import createProject from "./project"; // I DON"T THINK I NEED THIS"
-
 export default class ProjectsList {
     constructor() {
         this.projects = [];
@@ -22,7 +20,6 @@ export default class ProjectsList {
     addProjectToList(project){
         this.deactiveAllProjects();
         this.projects.push(project);
-        console.log(this.projects); // REMOVE
         this.updateProjectsSidebar();
         project.setAsActiveProject(); // THIS SHOULD BE A MODULE ON THE PROJECT CLASS
 
@@ -60,5 +57,18 @@ export default class ProjectsList {
            
             })
         }
+    }
+
+    getJSONString() {
+        // const JSON = this.projects.map(project => {
+        //     return project.stringify()
+        //     );
+
+        return JSON.stringify(this.projects);
+    }
+
+    setProjects(projects) {
+        this.projects = projects; 
+        // console.log(this.projects);
     }
 }

@@ -47,6 +47,7 @@ main {
     padding-top: 100px;
     display: grid;
     grid-template-columns: 1fr 4fr;
+    position: relative;
 }
 
 #container {
@@ -80,8 +81,8 @@ main {
     transition-duration: 200ms;
 }
 
-.taskItem:focus {
-    background-color: rgb(216, 235, 248);
+.taskItem:hover {
+    background-color: rgb(240, 249, 255);
 }
 
 .taskItem>.checkbox-custom {
@@ -92,12 +93,45 @@ main {
     cursor: pointer;
 }
 
-.taskItem>p {
+.taskTitle,
+.deleteBtn,
+.dueDate {
     margin: 0;
 }
 
-.taskItem>p[contenteditable] {
+.taskTitle[contenteditable] {
     outline: none;
+}
+
+.dueDateContainer {
+    margin-left: auto;
+    position: relative;
+}
+
+.dueDate:hover {
+    color: black;
+}
+
+.dueDate,
+.deleteBtn {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: rgb(190, 190, 190);
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.deleteBtn {
+    margin-left: 7px;
+    opacity: 0;
+}
+
+.taskItem:hover .deleteBtn {
+    opacity: 1;
+}
+
+.deleteBtn:hover {
+    color: red;
 }
 
 .checkbox-custom[data-checked="true"] {
@@ -108,4 +142,19 @@ main {
 .checkbox-custom[data-checked="true"]+p {
     opacity: 0.3;
     text-decoration: line-through;
+}
+
+.dateSelection {
+    position: absolute;
+    top: -4px;
+    left: -60px;
+    /* display: none; */
+
+}
+
+.dateSelection>input {
+    border: rgb(197, 197, 197) 1px solid;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px;
+
 }
