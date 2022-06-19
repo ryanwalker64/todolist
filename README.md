@@ -4,18 +4,20 @@
 - [x] New TASK created update JSON 
 - [x] add DELETE button and functionality
     - [x] update JSON 
-- [] add DUE-DATE button and functionality
-    - [] update JSON 
-- [] add RENAME functionality
-    - [] update JSON 
+- [x] add DUE-DATE button and functionality
+    - [x] update JSON 
+- [x] add RENAME functionality
+    - [x] update JSON 
 
 ## PROJECTS
-- [] Switch projects and retrive tasks
+- [x] Switch projects and retrive tasks
     - [] update JSON 
 - [] Delete projects and tasks associated
     - [] update JSON 
     - [] IF Project is active, switch project and delete project and tasks associated
         - [] update JSON 
+- [] alphabetssss
+- [] rename projects
 
 ## STORAGE
 - [x] On pageload, check localstorage and pull projects

@@ -36,8 +36,27 @@ ul {
 }
 
 
+.projectTitle[data-activeproject="true"]::before {
+    content: '→';
+    margin-right: 5px;
+}
+
 .projectTitle[data-activeproject="true"] {
-    display: none;
+    opacity: 1;
+}
+
+#activeProject {
+    cursor: pointer;
+}
+
+#activeProject:hover::before,
+#activeProject:focus::before {
+    content: '✎';
+    opacity: 0.3;
+}
+
+#activeProject[contenteditable] {
+    outline: none;
 }
 
 main {

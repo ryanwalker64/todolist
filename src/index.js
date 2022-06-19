@@ -7,6 +7,7 @@ import { formatDistance, subDays } from 'date-fns'
 const newTaskForm = document.getElementById('new-task');
 const newTaskTitle = document.querySelector('[name="Title"]');
 const taskContainer = document.getElementById('container');
+const projectsContainer = document.querySelector('.sideBarProjectsList');
 
 //initalise projectsList
 const InitProjectList = new ProjectsList();
@@ -43,19 +44,22 @@ function setLocalStorage() {
 }
 
 //Initalise App 
-function initApp () {
+function initApp() {
     //check localstorage for existing projects and tasks
     const getLocalStorage = JSON.parse(localStorage.getItem('projects-list'));
     //if localstorage exists, add 
     if (getLocalStorage) {
         const projectObjs = getLocalStorage.map(project => {
-            const projObj = new createProject(project.title, project.tasks, project.id)
+            const projObj = new createProject(project.title, project.tasks, project.id, project.activeProject);
             projObj.addPrototypesToTasks();
             return projObj;
         });
 
         InitProjectList.setProjects(projectObjs);
-        InitProjectList.findActiveProject().setAsActiveProject();
+        InitProjectList.findActiveProject().toggleActiveStatusProject(true);
+        InitProjectList.updateProjectsSidebar();
+
+        // .toggleActiveStatusProject(true)
 
     } else { // Default state of app if no other projects are loaded
         defaultAppState()
@@ -65,11 +69,9 @@ function initApp () {
 function defaultAppState() {
     const defaultProject = new createProject('Inbox');
     InitProjectList.addProjectToList(defaultProject);
-    defaultProject.setAsActiveProject();
+    defaultProject.toggleActiveStatusProject(true);
+    InitProjectList.updateProjectsSidebar();
 }
-
-
-initApp ()
 
 
 function checkForNewProjectCreator() {
@@ -77,14 +79,58 @@ function checkForNewProjectCreator() {
         const newProjectTitle = newTaskTitle.value.slice(1);
         const newProject = new createProject(newProjectTitle);
         InitProjectList.addProjectToList(newProject)
-        newProject.setAsActiveProject();
+        newProject.toggleActiveStatusProject(true);
+        InitProjectList.updateProjectsSidebar()
         newTaskTitle.value = '';
+        setLocalStorage();
         return true
     }
 }
 
 //EVENT LISTENERS
 taskContainer.addEventListener('click', handleTaskContainerEvents)
+taskContainer.addEventListener('submit', handleTaskDueDates)
+taskContainer.addEventListener('input', handleTaskTitles)
+projectsContainer.addEventListener('click', handleProjectsSwitch)
+
+function handleProjectsSwitch(e) {
+    if (e.target.classList.contains('projectTitle')) {
+    const selectedProject = e.target;
+    selectedProject.dataset.activeProject = 'true';
+    const projectObj = InitProjectList.findProject(selectedProject.dataset.projectid);
+    InitProjectList.deactiveAllProjects();
+    projectObj.toggleActiveStatusProject(true);
+    InitProjectList.updateProjectsSidebar();
+    setLocalStorage();
+    };
+    // // deactivate all projects so they appear <<<FIXXX
+}
+
+function handleTaskDueDates(e) {
+    e.preventDefault()
+    if(e.target.classList.contains('dateSelection')) {
+    const date = document.querySelector('.dateInput').value;
+    const taskDOMItem = e.target.closest('.taskItem');
+    const activeProject = InitProjectList.findActiveProject()
+    const taskObj = activeProject.getTaskInProject(taskDOMItem.dataset.taskid);
+    
+    taskObj.setDueDate(date);
+    activeProject.addTasksToDOM();
+    e.target.remove();
+    }
+    
+}
+
+function handleTaskTitles(e) {
+    if(e.target.classList.contains('taskTitle')) {
+    const newTitle = e.target.textContent;
+    const taskDOMItem = e.target.closest('.taskItem');
+    const activeProject = InitProjectList.findActiveProject()
+    const taskObj = activeProject.getTaskInProject(taskDOMItem.dataset.taskid)
+    taskObj.setTitle(newTitle);
+    
+    }
+}
 
 function handleTaskContainerEvents(e){
     const activeProject = InitProjectList.findActiveProject()
@@ -101,6 +147,7 @@ function handleTaskContainerEvents(e){
     } else if (clickedTaskBtn.classList.contains('dueDate')) {
         taskObj.showDatePicker( e.target.closest('.dueDateContainer'));
     }
+    setLocalStorage();
 }
 
 function handleTaskDeletions(taskObj, activeProject){
@@ -119,3 +166,5 @@ function handleTaskCompletions(checkbox, taskObj) {
     taskObj.toggleComplete();
     setLocalStorage()
 }
+
+initApp()
