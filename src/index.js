@@ -8,6 +8,8 @@ const newTaskForm = document.getElementById('new-task');
 const newTaskTitle = document.querySelector('[name="Title"]');
 const taskContainer = document.getElementById('container');
 const projectsContainer = document.querySelector('.sideBarProjectsList');
+const deleteProjectBtn = document.querySelector('.deleteProject');
+const activeProjectHeading = document.getElementById('activeProject');
 
 //initalise projectsList
 const InitProjectList = new ProjectsList();
@@ -91,7 +93,20 @@ function checkForNewProjectCreator() {
 taskContainer.addEventListener('click', handleTaskContainerEvents)
 taskContainer.addEventListener('submit', handleTaskDueDates)
 taskContainer.addEventListener('input', handleTaskTitles)
+activeProjectHeading.addEventListener('input', handleProjectTitle)
 projectsContainer.addEventListener('click', handleProjectsSwitch)
+deleteProjectBtn.addEventListener('click', handleProjectsDeletion)
+
+function handleProjectsDeletion(e) {
+    if (confirm('Are you sure you want to delete this project? This cannot be undone.')) {
+        const activeProject = InitProjectList.findActiveProject();
+        InitProjectList.deleteProject(activeProject.getId());
+        // find last project in the list and make active
+        // update sidebar
+        // set localstorage
+
+      }
+}
 
 function handleProjectsSwitch(e) {
     if (e.target.classList.contains('projectTitle')) {
@@ -123,12 +138,22 @@ function handleTaskDueDates(e) {
 
 function handleTaskTitles(e) {
     if(e.target.classList.contains('taskTitle')) {
-    const newTitle = e.target.textContent;
-    const taskDOMItem = e.target.closest('.taskItem');
-    const activeProject = InitProjectList.findActiveProject()
-    const taskObj = activeProject.getTaskInProject(taskDOMItem.dataset.taskid)
-    taskObj.setTitle(newTitle);
-    
+        const newTitle = e.target.textContent;
+        const taskDOMItem = e.target.closest('.taskItem');
+        const activeProject = InitProjectList.findActiveProject()
+        const taskObj = activeProject.getTaskInProject(taskDOMItem.dataset.taskid)
+        taskObj.setTitle(newTitle);
+    }
+}
+
+function handleProjectTitle(e) {
+    if (e.target.id === 'activeProject') {
+        const newProjectTitle = e.target.textContent;
+        const activeProject = InitProjectList.findActiveProject();
+        activeProject.setTitle(newProjectTitle);
+        setLocalStorage();
+        InitProjectList.updateProjectsSidebar();
+
     }
 }
 

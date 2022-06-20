@@ -15,6 +15,10 @@ export default class createProject {
     getTitle() {
         return this.title;
     }
+
+    getId() {
+        return this.id;
+    }
     
     getTasks() {
         return this.tasks;

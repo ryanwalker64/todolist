@@ -46,6 +46,13 @@ export default class ProjectsList {
 
     }
 
+    deleteProject(projectId) {
+        const projectIndex = this.projects.findIndex(project => {
+            return project.id === projectId;
+         })
+         this.projects.splice(this.projects[projectIndex], 1);
+    }
+
 
     getJSONString() {
         return JSON.stringify(this.projects);

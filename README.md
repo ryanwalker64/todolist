@@ -11,13 +11,13 @@
 
 ## PROJECTS
 - [x] Switch projects and retrive tasks
-    - [] update JSON 
+    - [x] update JSON 
 - [] Delete projects and tasks associated
     - [] update JSON 
     - [] IF Project is active, switch project and delete project and tasks associated
         - [] update JSON 
-- [] alphabetssss
-- [] rename projects
+- [x] rename projects
+    - [x] update JSON 
 
 ## STORAGE
 - [x] On pageload, check localstorage and pull projects

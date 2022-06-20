@@ -132,7 +132,8 @@ main {
 }
 
 .dueDate,
-.deleteBtn {
+.deleteBtn,
+.deleteProject {
     font-size: 0.8em;
     text-transform: uppercase;
     color: rgb(190, 190, 190);
@@ -140,7 +141,8 @@ main {
     transition-duration: 200ms;
 }
 
-.deleteBtn {
+.deleteBtn,
+.deleteProject {
     margin-left: 7px;
     opacity: 0;
 }
@@ -149,7 +151,8 @@ main {
     opacity: 1;
 }
 
-.deleteBtn:hover {
+.deleteBtn:hover,
+.deleteProject:hover {
     color: red;
 }
 
@@ -176,4 +179,16 @@ main {
     font-family: 'Roboto', sans-serif;
     padding: 2px;
 
+}
+
+.activeProjectHeading {
+    display: flex;
+}
+
+.deleteProject {
+    margin-left: auto;
+}
+
+.activeProjectHeading:hover .deleteProject {
+    opacity: 1;
 }
