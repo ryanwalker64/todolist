@@ -101,9 +101,16 @@ function handleProjectsDeletion(e) {
     if (confirm('Are you sure you want to delete this project? This cannot be undone.')) {
         const activeProject = InitProjectList.findActiveProject();
         InitProjectList.deleteProject(activeProject.getId());
-        // find last project in the list and make active
-        // update sidebar
-        // set localstorage
+        // const latestProject = InitProjectList.getProjects().length - 1;
+        const projectsArray = InitProjectList.getProjects();
+        if (projectsArray.length - 1 === -1) {
+            defaultAppState()
+        } else {
+            const latestProject = projectsArray[projectsArray.length - 1];
+            latestProject.toggleActiveStatusProject(true);
+        }
+        InitProjectList.updateProjectsSidebar();
+        setLocalStorage();
 
       }
 }

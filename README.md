@@ -1,6 +1,7 @@
 # Tasklist App
+___
 
-## TASKS
+### TASKS
 - [x] New TASK created update JSON 
 - [x] add DELETE button and functionality
     - [x] update JSON 
@@ -9,20 +10,25 @@
 - [x] add RENAME functionality
     - [x] update JSON 
 
-## PROJECTS
+___
+
+### PROJECTS
 - [x] Switch projects and retrive tasks
     - [x] update JSON 
-- [] Delete projects and tasks associated
-    - [] update JSON 
-    - [] IF Project is active, switch project and delete project and tasks associated
-        - [] update JSON 
+- [x] Delete projects and tasks associated
+    - [x] update JSON 
+    - [x] IF no more projects exist, restart app and set local storage
 - [x] rename projects
     - [x] update JSON 
 
-## STORAGE
+___
+
+### STORAGE
 - [x] On pageload, check localstorage and pull projects
     - [x] Make sure all classes get their methods
-- [x] if no items initNewProjectList 
+- [x] if no items initNewProjectList
 
-## FINISHERS
-- [] refactor and delete old code
+___
+
+### FINISHERS
+- [ ] refactor and delete old code

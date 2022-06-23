@@ -61,4 +61,8 @@ export default class ProjectsList {
     setProjects(projects) {
         this.projects = projects; 
     }
+
+    getProjects() {
+        return this.projects;
+    }
 }
